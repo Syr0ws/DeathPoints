@@ -1,0 +1,19 @@
+{
+  "Group": "com.github.syr0ws",
+  "Name": "DeathPoints",
+  "Version": "1.0.0",
+  "Description": "Manage your death points",
+  "Authors": [
+    {
+      "Name": "syr0ws",
+      "Email": "syrows.development@gmail.com",
+      "Url": "https://github.com/Syr0ws"
+    }
+  ],
+  "ServerVersion": "*",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "Main": "com.github.syr0ws.DeathPoints"
+}

@@ -1,0 +1,21 @@
+$C = "../Common.ui";
+
+@DeathPointListTab = Group {
+  FlexWeight: 1;
+
+  Label #NoDeathPointLabel {
+    Text: %deathpoints.ui.menu.nodeathpoint;
+    Style: (...$C.@DefaultLabelStyle, Alignment: Center);
+  }
+
+  Group #DeathPointList {
+    LayoutMode: TopScrolling;
+    ScrollbarStyle: $C.@DefaultScrollbarStyle;
+  }
+
+  $C.@TextButton #ClearButton {
+    Anchor: (Height: @PrimaryButtonHeight, Bottom: 0);
+    Text: %deathpoints.ui.menu.clear;
+    FlexWeight: 1;
+  }
+};

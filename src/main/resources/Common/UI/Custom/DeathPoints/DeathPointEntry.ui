@@ -1,0 +1,54 @@
+$C = "../Common.ui";
+
+Group #DeathPointEntry {
+  LayoutMode: Left;
+  FlexWeight: 1;
+  Anchor: (Height: 66, Bottom: 8);
+  Padding: (Full: 12);
+  Background: #1e2b42;
+
+  Group {
+    LayoutMode: Left;
+    FlexWeight: 1;
+
+    AssetImage {
+      Anchor: (Width: 32, Height: 32, Right: 12);
+      Background: (TexturePath: "Assets/Skull.png");
+    }
+
+    Group #DeathPointContent {
+      LayoutMode: Top;
+      FlexWeight: 1;
+
+      Label #DeathPointTitle {
+        Text: %deathpoints.ui.menu.entry.title;
+        Style: (RenderBold: true, RenderUppercase: true, FontSize: 16, TextColor: #96a9be(0.8));
+      }
+
+      Group #DeathPointCoordinates {
+        LayoutMode: Left;
+
+        Label #CoordX {
+          Text: %deathpoints.ui.menu.entry.content.coordinate.x;
+          Style: (...$C.@DefaultLabelStyle);
+        }
+
+        Label #CoordY {
+          Text: %deathpoints.ui.menu.entry.content.coordinate.y;
+          Style: (...$C.@DefaultLabelStyle);
+          Padding: (Horizontal: 5);
+        }
+
+        Label #CoordZ {
+          Text: %deathpoints.ui.menu.entry.content.coordinate.z;
+          Style: (...$C.@DefaultLabelStyle);
+        }
+      }
+    }
+
+    $C.@CancelTextButton #RemoveButton {
+      Anchor: (Height: @SmallButtonHeight);
+      Text: %deathpoints.ui.menu.entry.remove;
+    }
+  }
+}

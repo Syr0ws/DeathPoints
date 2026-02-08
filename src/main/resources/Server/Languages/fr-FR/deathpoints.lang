@@ -1,0 +1,22 @@
+command.description="Gestion des points de mort dans le monde courant"
+
+ui.menu.title="Points de mort"
+ui.menu.clear="Tout supprimer"
+ui.menu.nodeathpoint="Vous n'avez aucun point de mort dans le monde actuel"
+
+ui.menu.entry.title="Mort (Jour {day})"
+ui.menu.entry.content.coordinate.x="x: {x}"
+ui.menu.entry.content.coordinate.y="y: {y}"
+ui.menu.entry.content.coordinate.z="z: {z}"
+ui.menu.entry.remove="Supprimer"
+
+ui.menu.setting.deathpoint.create.label="Désactiver les points de mort"
+ui.menu.setting.deathpoint.create.description="Désactiver la création d'un point de mort lorsque vous mourrez"
+ui.menu.setting.deathpoint.autodelete.label="Suppression automatique d'un point de mort"
+ui.menu.setting.deathpoint.autodelete.description="Suppression lorsque vous atteignez sa position (rayon de 5 blocs)"
+ui.menu.setting.save="Sauvegarder"
+
+notification.setting.save="Vos options ont été sauvegardées."
+notification.deathpoint.removed="Point de mort supprimé."
+notification.deathpoints.cleared="Tous vos points de mort ont été supprimés."
+notification.deathpoint.autoremoved="Vous avez atteint un point de mort. Il a été automatiquement supprimé."

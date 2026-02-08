@@ -1,0 +1,65 @@
+$C = "../Common.ui";
+$DPL = "DeathPointListTab.ui";
+$DPS = "DeathPointSettingsTab.ui";
+
+@ActiveTabButtonStyle = ButtonStyle(
+  Default: (Background: PatchStyle(...$C.@DefaultButtonDefaultBackground, VerticalBorder: 12, HorizontalBorder: 12)),
+  Hovered: (Background: PatchStyle(...$C.@DefaultButtonHoveredBackground, VerticalBorder: 12, HorizontalBorder: 12)),
+  Pressed: (Background: PatchStyle(...$C.@DefaultButtonPressedBackground, VerticalBorder: 12, HorizontalBorder: 12)),
+  Disabled: (Background: PatchStyle(...$C.@DefaultButtonDisabledBackground, VerticalBorder: 12, HorizontalBorder: 12)),
+  Sounds: $C.@ButtonSounds,
+);
+
+$C.@PageOverlay {}
+
+$C.@DecoratedContainer {
+  Anchor: (Width: 600, Height: 700);
+
+  #Title {
+    Group {
+      $C.@Title {
+        @Text = %deathpoints.ui.menu.title;
+      }
+    }
+  }
+
+  #Content {
+
+    Group {
+      LayoutMode: Center;
+
+      $C.@SecondaryButton #TabDeathPointListButton {
+        Style: (...@ActiveTabButtonStyle);
+        AssetImage {
+          Anchor: (Width: 32, Height: 32);
+          Background: (TexturePath: "Assets/TabDeathPointListIcon.png");
+        }
+      }
+
+      Group {
+        Anchor: (Width: 5);
+      }
+
+      $C.@SecondaryButton #TabSettingsButton {
+        AssetImage {
+          Anchor: (Width: 32, Height: 32);
+          Background: (TexturePath: "Assets/TabSettingsIcon.png");
+        }
+      }
+    }
+
+    Group {
+      Anchor: (Height: 8);
+    }
+
+    $DPL.@DeathPointListTab #DeathPointListTab {
+      Visible: true;
+    }
+
+    $DPS.@DeathPointSettingsTab #DeathPointSettingsTab  {
+      Visible: false;
+    }
+  }
+}
+
+$C.@BackButton {}

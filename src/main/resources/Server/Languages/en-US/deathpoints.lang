@@ -1,0 +1,22 @@
+command.description="Manage your death points in the current world"
+
+ui.menu.title="Death points"
+ui.menu.clear="Clear"
+ui.menu.nodeathpoint="You don't have any death point in the current world"
+
+ui.menu.entry.title="Death (Day {day})"
+ui.menu.entry.content.coordinate.x="x: {x}"
+ui.menu.entry.content.coordinate.y="y: {y}"
+ui.menu.entry.content.coordinate.z="z: {z}"
+ui.menu.entry.remove="Remove"
+
+ui.menu.setting.deathpoint.create.label="Disable death points"
+ui.menu.setting.deathpoint.create.description="Disable death point creation when you die"
+ui.menu.setting.deathpoint.autodelete.label="Automatic death point deletion"
+ui.menu.setting.deathpoint.autodelete.description="Automatic deletion when reaching a death point (~5 blocks radius)"
+ui.menu.setting.save="Save"
+
+notification.setting.save="Your settings have been saved."
+notification.deathpoint.removed="Death point has been removed."
+notification.deathpoints.cleared="All death points have been removed."
+notification.deathpoint.autoremoved="You reached a death point. It has been automatically removed."

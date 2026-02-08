@@ -1,0 +1,58 @@
+$C = "../Common.ui";
+
+@SettingContainer = Group {
+  LayoutMode: Top;
+  FlexWeight: 1;
+  Anchor: (Height: 66, Bottom: 8);
+  Padding: (Full: 12);
+  Background: #1e2b42;
+};
+
+@SettingInputLabelSeparator = Group {
+  Anchor: (Height: 3);
+};
+
+@SettingDescriptionStyle = LabelStyle(...$C.@DefaultLabelStyle, RenderItalics: true, Wrap: true);
+
+@DeathPointSettingsTab = Group {
+  LayoutMode: Top;
+  FlexWeight: 1;
+
+  Group #SettingList {
+    LayoutMode: Top;
+
+    @SettingContainer #DisableDeathPointSetting {
+
+      $C.@CheckBoxWithLabel {
+        @Text = %deathpoints.ui.menu.setting.deathpoint.create.label;
+      }
+
+      @SettingInputLabelSeparator {}
+
+      Label {
+        Text: %deathpoints.ui.menu.setting.deathpoint.create.description;
+        Style: (...@SettingDescriptionStyle);
+      }
+    }
+
+    @SettingContainer #AutoDeleteDeathPointSetting {
+
+      $C.@CheckBoxWithLabel {
+        @Text = %deathpoints.ui.menu.setting.deathpoint.autodelete.label;
+      }
+
+      @SettingInputLabelSeparator {}
+
+      Label {
+        Text: %deathpoints.ui.menu.setting.deathpoint.autodelete.description;
+        Style: (...@SettingDescriptionStyle);
+      }
+    }
+  }
+
+  $C.@TextButton #SaveButton {
+    Anchor: (Height: @PrimaryButtonHeight, Bottom: 0);
+    Text: %deathpoints.ui.menu.setting.save;
+    FlexWeight: 1;
+  }
+};
