@@ -1,9 +1,11 @@
 package com.github.syr0ws.data;
 
+import com.github.syr0ws.component.ComponentManager;
 import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.component.Component;
+import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 
 /**
@@ -76,5 +78,14 @@ public class DeathPointSettings implements Component<EntityStore> {
         settings.setDisableDeathPoints(this.disableDeathPoints);
         settings.setAutoDeleteDeathPoints(this.autoDeleteDeathPoints);
         return settings;
+    }
+
+    /**
+     * Gets the {@link ComponentType} associated with {@link DeathPointSettings}.
+     *
+     * @return a {@code ComponentType<EntityStore, DeathPointSettings>}.
+     */
+    public static ComponentType<EntityStore, DeathPointSettings> getComponentType() {
+        return ComponentManager.get().getDeathPointSettingsComponentType();
     }
 }

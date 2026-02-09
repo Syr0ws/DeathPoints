@@ -32,7 +32,7 @@ import java.util.List;
 public class AutoDeathPointRemoval extends EntityTickingSystem<EntityStore> {
 
     private static final Query<EntityStore> QUERY = Query.and(Player.getComponentType(),
-            TransformComponent.getComponentType(), ComponentManager.get().getDeathPointSettingsComponentType());
+            TransformComponent.getComponentType(), DeathPointSettings.getComponentType());
 
     private static final int DEATH_POINT_REMOVAL_DISTANCE_SQUARED = 25; // 5 blocks
 
@@ -48,7 +48,7 @@ public class AutoDeathPointRemoval extends EntityTickingSystem<EntityStore> {
                      @Nonnull Store<EntityStore> store,
                      @Nonnull CommandBuffer<EntityStore> commandBuffer) {
 
-        DeathPointSettings settings = archetypeChunk.getComponent(index, ComponentManager.get().getDeathPointSettingsComponentType());
+        DeathPointSettings settings = archetypeChunk.getComponent(index, DeathPointSettings.getComponentType());
 
         if (settings == null || !settings.isAutoDeleteDeathPoints()) {
             return;

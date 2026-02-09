@@ -27,7 +27,7 @@ import java.util.Set;
  */
 public class DeathPointPreventer extends DeathSystems.OnDeathSystem {
 
-    private static final Query<EntityStore> QUERY = Query.and(Player.getComponentType(), ComponentManager.get().getDeathPointSettingsComponentType());
+    private static final Query<EntityStore> QUERY = Query.and(Player.getComponentType(), DeathPointSettings.getComponentType());
 
     private final DeathPointManager manager;
 
@@ -41,7 +41,7 @@ public class DeathPointPreventer extends DeathSystems.OnDeathSystem {
                                  @Nonnull Store<EntityStore> store,
                                  @Nonnull CommandBuffer<EntityStore> commandBuffer) {
 
-        DeathPointSettings settings = store.getComponent(ref, ComponentManager.get().getDeathPointSettingsComponentType());
+        DeathPointSettings settings = store.getComponent(ref, DeathPointSettings.getComponentType());
 
         if (settings == null || !settings.isDisableDeathPoints()) {
             return;

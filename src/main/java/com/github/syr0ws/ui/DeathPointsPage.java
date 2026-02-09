@@ -114,7 +114,7 @@ public class DeathPointsPage extends InteractiveCustomUIPage<DeathPointsPage.Dea
                                             @Nonnull UICommandBuilder cmdBuilder,
                                             @Nonnull Store<EntityStore> store) {
 
-        DeathPointSettings settings = store.ensureAndGetComponent(ref, ComponentManager.get().getDeathPointSettingsComponentType());
+        DeathPointSettings settings = store.ensureAndGetComponent(ref, DeathPointSettings.getComponentType());
 
         cmdBuilder.set("#DisableDeathPointSetting #CheckBox.Value", settings.isDisableDeathPoints());
         cmdBuilder.set("#AutoDeleteDeathPointSetting #CheckBox.Value", settings.isAutoDeleteDeathPoints());
@@ -234,7 +234,7 @@ public class DeathPointsPage extends InteractiveCustomUIPage<DeathPointsPage.Dea
                                     @Nonnull Store<EntityStore> store,
                                     @Nonnull DeathPointsPageEventData data) {
 
-        DeathPointSettings settings = store.ensureAndGetComponent(ref, ComponentManager.get().getDeathPointSettingsComponentType());
+        DeathPointSettings settings = store.ensureAndGetComponent(ref, DeathPointSettings.getComponentType());
         settings.setDisableDeathPoints(data.disableDeathPoint());
         settings.setAutoDeleteDeathPoints(data.autoDeleteDeathPoint());
 
