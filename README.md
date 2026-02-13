@@ -1,6 +1,6 @@
 ![link](https://img.shields.io/badge/Platform-Hytale-blue)
 
-DeathPoints is a mod that simplifies death points management in Hytale.
+DeathPoints is a Hytale mod that simplifies death points management.
 
 ## Features
 
