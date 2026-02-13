@@ -28,6 +28,6 @@ The mod also comes with personalization options which are managed through the de
 
 The following languages are supported: en-US (default), fr-FR.
 
-_If you want your language to be supported, feel free to ask or to submit a pull request on the GitHub page of the project._
+_If you want your language to be supported, feel free to ask or to submit a pull request._
 
 
