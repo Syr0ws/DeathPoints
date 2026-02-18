@@ -15,6 +15,20 @@ public class ComponentManager {
     private ComponentType<EntityStore, DeathPointSettings> deathPointSettingsComponentType;
 
     /**
+     * Gets the {@link ComponentManager} instance.
+     *
+     * @return an instance of {@link ComponentManager}
+     */
+    public static ComponentManager get() {
+
+        if (instance == null) {
+            instance = new ComponentManager();
+        }
+
+        return instance;
+    }
+
+    /**
      * Register custom ECS components.
      *
      * @param registry the registry in which registering components.
@@ -31,19 +45,5 @@ public class ComponentManager {
      */
     public ComponentType<EntityStore, DeathPointSettings> getDeathPointSettingsComponentType() {
         return this.deathPointSettingsComponentType;
-    }
-
-    /**
-     * Gets the {@link ComponentManager} instance.
-     *
-     * @return an instance of {@link ComponentManager}
-     */
-    public static ComponentManager get() {
-
-        if (instance == null) {
-            instance = new ComponentManager();
-        }
-
-        return instance;
     }
 }

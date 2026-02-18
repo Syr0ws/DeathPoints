@@ -1,6 +1,5 @@
 package com.github.syr0ws.system;
 
-import com.github.syr0ws.component.ComponentManager;
 import com.github.syr0ws.data.DeathPointSettings;
 import com.github.syr0ws.model.DeathPointManager;
 import com.hypixel.hytale.component.ArchetypeChunk;

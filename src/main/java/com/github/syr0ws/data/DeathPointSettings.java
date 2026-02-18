@@ -34,6 +34,15 @@ public class DeathPointSettings implements Component<EntityStore> {
     private boolean autoDeleteDeathPoints = false;
 
     /**
+     * Gets the {@link ComponentType} associated with {@link DeathPointSettings}.
+     *
+     * @return a {@code ComponentType<EntityStore, DeathPointSettings>}.
+     */
+    public static ComponentType<EntityStore, DeathPointSettings> getComponentType() {
+        return ComponentManager.get().getDeathPointSettingsComponentType();
+    }
+
+    /**
      * Returns whether death points creation is disabled.
      *
      * @return {@code true} if death points creation is disabled, {@code false} otherwise
@@ -78,14 +87,5 @@ public class DeathPointSettings implements Component<EntityStore> {
         settings.setDisableDeathPoints(this.disableDeathPoints);
         settings.setAutoDeleteDeathPoints(this.autoDeleteDeathPoints);
         return settings;
-    }
-
-    /**
-     * Gets the {@link ComponentType} associated with {@link DeathPointSettings}.
-     *
-     * @return a {@code ComponentType<EntityStore, DeathPointSettings>}.
-     */
-    public static ComponentType<EntityStore, DeathPointSettings> getComponentType() {
-        return ComponentManager.get().getDeathPointSettingsComponentType();
     }
 }

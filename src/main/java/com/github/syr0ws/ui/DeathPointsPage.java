@@ -1,6 +1,5 @@
 package com.github.syr0ws.ui;
 
-import com.github.syr0ws.component.ComponentManager;
 import com.github.syr0ws.data.DeathPointSettings;
 import com.github.syr0ws.model.DeathPoint;
 import com.github.syr0ws.model.DeathPointManager;
@@ -247,12 +246,12 @@ public class DeathPointsPage extends InteractiveCustomUIPage<DeathPointsPage.Dea
         );
     }
 
-    public static class DeathPointsPageEventData {
+    private enum Action {
 
-        private String action;
-        private int deathPointIndex;
-        private boolean disableDeathPoint;
-        private boolean autoDeleteDeathPoint;
+        REMOVE_DEATH_POINT, CLEAR_DEATH_POINTS, SAVE_SETTINGS, OPEN_TAB_DEATH_POINT_LIST, OPEN_TAB_SETTINGS
+    }
+
+    public static class DeathPointsPageEventData {
 
         public static final BuilderCodec<DeathPointsPageEventData> CODEC = BuilderCodec.builder(
                         DeathPointsPageEventData.class, DeathPointsPageEventData::new)
@@ -265,8 +264,13 @@ public class DeathPointsPage extends InteractiveCustomUIPage<DeathPointsPage.Dea
                 .append(new KeyedCodec<>("@AutoDeleteDeathPoint", BuilderCodec.BOOLEAN), (data, value) -> data.autoDeleteDeathPoint = value, data -> data.autoDeleteDeathPoint)
                 .add()
                 .build();
+        private String action;
+        private int deathPointIndex;
+        private boolean disableDeathPoint;
+        private boolean autoDeleteDeathPoint;
 
-        public DeathPointsPageEventData() {}
+        public DeathPointsPageEventData() {
+        }
 
         public String action() {
             return this.action;
@@ -283,10 +287,5 @@ public class DeathPointsPage extends InteractiveCustomUIPage<DeathPointsPage.Dea
         public boolean autoDeleteDeathPoint() {
             return this.autoDeleteDeathPoint;
         }
-    }
-
-    private enum Action {
-
-        REMOVE_DEATH_POINT, CLEAR_DEATH_POINTS, SAVE_SETTINGS, OPEN_TAB_DEATH_POINT_LIST, OPEN_TAB_SETTINGS;
     }
 }
