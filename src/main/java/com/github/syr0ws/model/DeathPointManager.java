@@ -3,7 +3,6 @@ package com.github.syr0ws.model;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.math.vector.Transform;
-import com.hypixel.hytale.math.vector.Vector3d;
 import com.hypixel.hytale.protocol.packets.worldmap.MapMarker;
 import com.hypixel.hytale.protocol.packets.worldmap.UpdateWorldMap;
 import com.hypixel.hytale.server.core.entity.entities.Player;
@@ -14,6 +13,7 @@ import com.hypixel.hytale.server.core.io.PacketHandler;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import org.joml.Vector3d;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -146,9 +146,9 @@ public class DeathPointManager {
         Transform transform = data.getTransform();
         Vector3d position = transform.getPosition();
 
-        double x = position.getX();
-        double y = position.getY();
-        double z = position.getZ();
+        double x = position.x();
+        double y = position.y();
+        double z = position.z();
 
         return new DeathPoint(markerId, day, x, y, z);
     }

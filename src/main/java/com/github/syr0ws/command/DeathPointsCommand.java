@@ -37,7 +37,7 @@ public class DeathPointsCommand extends AbstractPlayerCommand {
                            @Nonnull PlayerRef playerRef,
                            @Nonnull World world) {
 
-        Player player = context.senderAs(Player.class);
+        Player player = store.getComponent(ref, Player.getComponentType());
 
         DeathPointsPage page = new DeathPointsPage(playerRef, this.manager);
         player.getPageManager().openCustomPage(ref, store, page);

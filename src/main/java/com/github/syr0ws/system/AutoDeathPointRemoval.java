@@ -7,7 +7,6 @@ import com.hypixel.hytale.component.CommandBuffer;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
-import com.hypixel.hytale.math.vector.Vector3d;
 import com.hypixel.hytale.protocol.packets.interface_.NotificationStyle;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.entities.Player;
@@ -20,6 +19,7 @@ import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.NotificationUtil;
+import org.joml.Vector3d;
 
 import javax.annotation.Nonnull;
 import java.util.Collections;
@@ -78,7 +78,7 @@ public class AutoDeathPointRemoval extends EntityTickingSystem<EntityStore> {
             Vector3d deathPointPosition = data.getTransform().getPosition();
 
             // Distance squared is lighter to compute than the actual distance.
-            double distanceSquared = deathPointPosition.distanceSquaredTo(transform.getPosition());
+            double distanceSquared = deathPointPosition.distanceSquared(transform.getPosition());
 
             if (distanceSquared <= DEATH_POINT_REMOVAL_DISTANCE_SQUARED) {
 
