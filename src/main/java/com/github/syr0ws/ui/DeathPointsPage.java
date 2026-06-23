@@ -3,23 +3,30 @@ package com.github.syr0ws.ui;
 import com.github.syr0ws.data.DeathPointSettings;
 import com.github.syr0ws.model.DeathPoint;
 import com.github.syr0ws.model.DeathPointManager;
+import com.github.syr0ws.util.Permission;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
+import com.hypixel.hytale.math.vector.Rotation3f;
+import com.hypixel.hytale.math.vector.Transform;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
 import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType;
 import com.hypixel.hytale.protocol.packets.interface_.NotificationStyle;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCustomUIPage;
+import com.hypixel.hytale.server.core.modules.entity.teleport.Teleport;
+import com.hypixel.hytale.server.core.permissions.HytalePermissions;
 import com.hypixel.hytale.server.core.ui.Value;
 import com.hypixel.hytale.server.core.ui.builder.EventData;
 import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.NotificationUtil;
+import org.joml.Vector3d;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -141,10 +148,20 @@ public class DeathPointsPage extends InteractiveCustomUIPage<DeathPointsPage.Dea
             cmdBuilder.set(selector + " #DeathPointCoordinates #CoordZ.Text",
                     Message.translation("deathpoints.ui.menu.entry.content.coordinate.z").param("z", (int) deathPoint.z()));
 
+            cmdBuilder.set(selector + " #TeleportButton.Visible",
+                    super.playerRef.hasPermission(Permission.DEATH_POINT_TELEPORT));
+
             eventBuilder.addEventBinding(
                     CustomUIEventBindingType.Activating,
                     selector + " #RemoveButton",
                     new EventData().append("Action", Action.REMOVE_DEATH_POINT.name())
+                            .append("DeathPointIndex", String.valueOf(i))
+            );
+
+            eventBuilder.addEventBinding(
+                    CustomUIEventBindingType.Activating,
+                    selector + " #TeleportButton",
+                    new EventData().append("Action", Action.TELEPORT_TO_DEATH_POINT.name())
                             .append("DeathPointIndex", String.valueOf(i))
             );
         }
@@ -173,6 +190,9 @@ public class DeathPointsPage extends InteractiveCustomUIPage<DeathPointsPage.Dea
 
             } else if (action.equals(Action.REMOVE_DEATH_POINT.name())) {
                 this.handleRemove(player, data);
+
+            } else if (action.equals(Action.TELEPORT_TO_DEATH_POINT.name())) {
+                this.handleTeleport(player, ref, store, data);
 
             } else if (action.equals(Action.OPEN_TAB_DEATH_POINT_LIST.name()) || action.equals(Action.OPEN_TAB_SETTINGS.name())) {
                 this.handleTabUpdate(action);
@@ -216,6 +236,40 @@ public class DeathPointsPage extends InteractiveCustomUIPage<DeathPointsPage.Dea
         );
     }
 
+    private void handleTeleport(@Nonnull Player player, Ref<EntityStore> ref, Store<EntityStore> store, @Nonnull DeathPointsPageEventData data) {
+
+        if (!super.playerRef.hasPermission(Permission.DEATH_POINT_TELEPORT)) {
+            NotificationUtil.sendNotification(
+                    super.playerRef.getPacketHandler(),
+                    Message.translation("deathpoints.notification.no-permission"),
+                    NotificationStyle.Danger
+            );
+            return;
+        }
+
+        int index = data.deathPointIndex();
+
+        List<DeathPoint> deathPointList = this.manager.getDeathPoints(player);
+        DeathPoint deathPoint = deathPointList.get(index);
+
+        Vector3d deathPointPosition = new  Vector3d(deathPoint.x(), deathPoint.y(), deathPoint.z());
+        Rotation3f playerRotation = super.playerRef.getTransform().getRotation();
+        Transform transform = new Transform(deathPointPosition, playerRotation);
+
+        World playerWorld = player.getWorld();
+
+        Teleport teleport = Teleport.createForPlayer(playerWorld, transform);
+        store.addComponent(ref, Teleport.getComponentType(), teleport);
+
+        NotificationUtil.sendNotification(
+                super.playerRef.getPacketHandler(),
+                Message.translation("deathpoints.notification.deathpoint.teleported"),
+                NotificationStyle.Success
+        );
+
+        super.close();
+    }
+
     private void handleTabUpdate(@Nonnull String action) {
 
         UICommandBuilder cmdBuilder = new UICommandBuilder();
@@ -248,7 +302,7 @@ public class DeathPointsPage extends InteractiveCustomUIPage<DeathPointsPage.Dea
 
     private enum Action {
 
-        REMOVE_DEATH_POINT, CLEAR_DEATH_POINTS, SAVE_SETTINGS, OPEN_TAB_DEATH_POINT_LIST, OPEN_TAB_SETTINGS
+        REMOVE_DEATH_POINT, TELEPORT_TO_DEATH_POINT, CLEAR_DEATH_POINTS, SAVE_SETTINGS, OPEN_TAB_DEATH_POINT_LIST, OPEN_TAB_SETTINGS
     }
 
     public static class DeathPointsPageEventData {

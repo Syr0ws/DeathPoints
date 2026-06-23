@@ -13,7 +13,7 @@ $DPS = "DeathPointSettingsTab.ui";
 $C.@PageOverlay {}
 
 $C.@DecoratedContainer {
-  Anchor: (Width: 600, Height: 700);
+  Anchor: (Width: 625, Height: 700);
 
   #Title {
     Group {

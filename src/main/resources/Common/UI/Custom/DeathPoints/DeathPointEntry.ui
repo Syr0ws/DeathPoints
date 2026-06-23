@@ -46,6 +46,16 @@ Group #DeathPointEntry {
       }
     }
 
+    $C.@TextButton #TeleportButton {
+      Anchor: (Height: @SmallButtonHeight);
+      Text: %deathpoints.ui.menu.entry.teleport;
+      Visible: true;
+    }
+
+    Group {
+      Anchor: (Width: 5);
+    }
+
     $C.@CancelTextButton #RemoveButton {
       Anchor: (Height: @SmallButtonHeight);
       Text: %deathpoints.ui.menu.entry.remove;
