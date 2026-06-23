@@ -10,7 +10,7 @@
       "Url": "https://github.com/Syr0ws"
     }
   ],
-  "ServerVersion": "^0.5.3",
+  "ServerVersion": "^0.5.6",
   "Dependencies": {},
   "OptionalDependencies": {},
   "DisabledByDefault": false,
