@@ -5,7 +5,8 @@ DeathPoints is a Hytale mod that simplifies death points management.
 ## Features
 
 The mod enables you to manage your death points through a menu. You can easily remove one death point or clear them all. 
-Management is done for the world you’re currently in.
+Management is done for the world you’re currently in. The mod also enables to be teleported to a death point (requires a
+specific permission).
 
 <img alt="" src="./assets/deathpoints-list.png" width="350"/>
 
@@ -18,11 +19,12 @@ The mod also comes with personalization options which are managed through the de
 
 ## Commands
 
-`/deathpoints (aliases: deathpoint, dp)` → Open the death points management menu for the current world.
+- `/deathpoints (aliases: deathpoint, dp)` → Open the death points management menu for the current world.
 
 ## Permissions
 
-`com.github.syr0ws.deathpoints.command.deathpoints` → Access the /deathpoints command.
+- `com.github.syr0ws.deathpoints.command.deathpoints` → Access the /deathpoints command.
+- `com.github.syr0ws.deathpoints.teleport` → Allow to be teleported to a death point.
 
 ## Languages
 
